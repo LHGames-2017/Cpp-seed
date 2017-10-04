@@ -2,7 +2,7 @@
 
 AI::AI(string playerName_) {
         playerName = playerName_;
-        uri serverURI("http://localhost:5046/index");
+        uri serverURI("http://0.0.0.0:5046/");
         uri_builder builder;
         listener = http_listener(serverURI);
         listener.open().wait();
@@ -33,7 +33,7 @@ void AI::requestHandler(http_request request) {
 
     request.extract_json().get();
 
-    cout << body[U("Map")]; << endl;
+    cout << body[U("Map")] << endl;
 
     request.reply(status_codes::OK, U("ALLO SIMON"));
 
