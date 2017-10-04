@@ -1,0 +1,9 @@
+FROM ubuntu:xenial
+
+EXPOSE 5046
+
+ADD . .
+
+RUN apt-get update
+RUN apt-get install g++ git make zlib1g-dev libboost-all-dev libssl-dev -y
+RUN apt-get install libcpprest-dev -y
