@@ -62,3 +62,90 @@ public:
 
 struct PlayerInfo;
 
+enum PurchasableItem {
+    MicrosoftSword,
+    UbisoftShield,
+    DevolutionsBackpack,
+    DevolutionsPickaxe,
+    HealthPotion,
+};
+
+enum TileContent {
+    Empty, Resource, House, Player, Wall, Lava, Shop
+};
+
+enum TileType {
+    Tile, Wall, House, Lava, Resource, Shop
+};
+
+enum UpgradeType {
+    CarryingCapacity, AttackPower, Defence, MaximumHealth,
+    CollectingSpeed
+};
+
+enum ActionTypes {
+    DefaultAction, MoveAction, AttackAction, CollectAction,
+    UpgradeAction, StealAction, PurchaseAction, HealAction
+};
+
+class GameInfo {
+
+public:
+
+    Player player;
+    string customSerializedMap;
+    vector<map<string, PlayerInfo>> otherPlayers;
+
+    GameInfo(Player player_, string serializedMap, vector<map<string, PlayerInfo>> otherPlayers_) {
+
+        player = player_;
+        customSerializedMap = serializedMap;
+        otherPlayers = otherPlayers_;
+
+    }
+
+};
+
+class Player {
+
+public:
+
+    Player(int health, int maxHealth, Point position, Point houseLocation, int score,
+                  int carriedResources, int carryingCapacity)
+    {
+        Health = health;
+        MaxHealth = maxHealth;
+        Position = position;
+        HouseLocation = houseLocation;
+        Score = score;
+        CarriedResources = carriedResources;
+        CarryingCapacity = carryingCapacity;
+    }
+
+    int Health;
+    int MaxHealth;
+    int CarriedResources;
+    int CarryingCapacity;
+    Point Position;
+    Point HouseLocation;
+    int Score;
+
+
+};
+
+class PlayerInfo {
+
+public:
+
+    PlayerInfo(int health, int maxHealth, Point position)
+    {
+        Health = health;
+        MaxHealth = maxHealth;
+        Position = position;
+    }
+
+    int Health;
+    int MaxHealth;
+    Point Position;
+
+}
