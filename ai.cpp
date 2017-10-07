@@ -38,7 +38,7 @@ string AI::createAction(string actionName, UpgradeType upgrade) {
     char upgradeString[10];
     json action;
     action["ActionName"] = actionName;
-    sprintf(itemString, "%d", upgrade);
+    sprintf(upgradeString, "%d", upgrade);
     action["Content"] = upgradeString;
 
     return action.dump();
@@ -68,7 +68,7 @@ string AI::createHealAction(Point target) {
 }
 
 string AI::createPurchaseAction(PurchasableItem item) {
-    return create_action("PurchaseAction", item);
+    return createAction("PurchaseAction", item);
 }
 
 
@@ -76,9 +76,7 @@ vector<vector<Tile>> AI::deserializeMap(string serializedMap) {
 
     serializedMap = serializedMap.substr(1, serializedMap.length() - 1);
     vector<string> rows = split(serializedMap, "[");
-    cout << rows[1] << endl;
     vector<string> column = split(rows[1], "{");
-    cout << column[1] << endl;
     vector<vector<Tile>> map;
 
     for (int i = 0; i < rows.size() - 1; i++) {
@@ -121,6 +119,8 @@ void AI::requestHandler(http_request request) {
 
             string gameInfoJsonRaw = bodySplit[1];
 
+            cout << gameInfoJsonRaw << endl;
+
             vector<string> begin_split = split(gameInfoJsonRaw, "[[");
 
             string begin = begin_split[0];
@@ -159,10 +159,6 @@ void AI::run() {
 int main(int argc, char* argv[]) {
 
     string playerName;
-
-    //std::cout << "Enter your player name: " << std::endl;
-
-    //std::cin >> playerName;
 
     AI* bot = new AI("Svieg");
 

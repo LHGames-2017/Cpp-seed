@@ -29,6 +29,7 @@ public:
     void requestHandler(http_request req);
     string createAction(string actionName, PurchasableItem item);
     string createAction(string actionName, Point target);
+    string createAction(string actionName, UpgradeType upgrade);
     vector<vector<Tile>> deserializeMap(string serializedMap);
 
     string createMoveAction(Point target);

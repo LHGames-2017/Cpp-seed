@@ -3,6 +3,10 @@
 #include <math.h>
 #include <cstdint>
 #include <string>
+#include <vector>
+#include <map>
+
+using namespace std;
 
 class Tile {
 
@@ -60,7 +64,34 @@ public:
 
 };
 
-struct PlayerInfo;
+class Player {
+
+public:
+
+    Player(int health, int maxHealth, Point position, Point houseLocation, int score,
+                  int carriedResources, int carryingCapacity)
+    {
+        Health = health;
+        MaxHealth = maxHealth;
+        Position = position;
+        HouseLocation = houseLocation;
+        Score = score;
+        CarriedResources = carriedResources;
+        CarryingCapacity = carryingCapacity;
+    }
+
+    Player() {}
+
+    int Health;
+    int MaxHealth;
+    int CarriedResources;
+    int CarryingCapacity;
+    Point Position;
+    Point HouseLocation;
+    int Score;
+
+
+};
 
 enum PurchasableItem {
     MicrosoftSword,
@@ -71,11 +102,11 @@ enum PurchasableItem {
 };
 
 enum TileContent {
-    Empty, Resource, House, Player, Wall, Lava, Shop
+    EmptyTC, ResourceTC, HouseTC, PlayerTC, WallTC, LavaTC, ShopTC
 };
 
 enum TileType {
-    Tile, Wall, House, Lava, Resource, Shop
+    TileTT, WallTT, HouseTT, LavaTT, ResourceTT, ShopTT
 };
 
 enum UpgradeType {
@@ -86,6 +117,23 @@ enum UpgradeType {
 enum ActionTypes {
     DefaultAction, MoveAction, AttackAction, CollectAction,
     UpgradeAction, StealAction, PurchaseAction, HealAction
+};
+
+class PlayerInfo {
+
+public:
+
+    PlayerInfo(int health, int maxHealth, Point position)
+    {
+        Health = health;
+        MaxHealth = maxHealth;
+        Position = position;
+    }
+
+    int Health;
+    int MaxHealth;
+    Point Position;
+
 };
 
 class GameInfo {
@@ -106,46 +154,15 @@ public:
 
 };
 
-class Player {
+class ActionContent {
 
 public:
 
-    Player(int health, int maxHealth, Point position, Point houseLocation, int score,
-                  int carriedResources, int carryingCapacity)
-    {
-        Health = health;
-        MaxHealth = maxHealth;
-        Position = position;
-        HouseLocation = houseLocation;
-        Score = score;
-        CarriedResources = carriedResources;
-        CarryingCapacity = carryingCapacity;
-    }
+    ActionContent() {}
 
-    int Health;
-    int MaxHealth;
-    int CarriedResources;
-    int CarryingCapacity;
-    Point Position;
-    Point HouseLocation;
-    int Score;
+    ActionContent(string actionName, string content) : ActionName(actionName), Content(content) {}
 
+    string ActionName;
+    string Content;
 
 };
-
-class PlayerInfo {
-
-public:
-
-    PlayerInfo(int health, int maxHealth, Point position)
-    {
-        Health = health;
-        MaxHealth = maxHealth;
-        Position = position;
-    }
-
-    int Health;
-    int MaxHealth;
-    Point Position;
-
-}
