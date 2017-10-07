@@ -145,7 +145,7 @@ void AI::requestHandler(http_request request) {
 
     );
 
-    request.reply(status_codes::OK, U("ALLO SIMON"));
+    request.reply(status_codes::OK, U(createMoveAction(Point(0,1))));
 
 }
 
