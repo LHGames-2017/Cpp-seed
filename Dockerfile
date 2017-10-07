@@ -2,7 +2,7 @@ FROM polyhx/cpp-server
 
 ADD . .
 
-EXPOSE 5046
+EXPOSE 3000
 
 RUN make
 CMD ["./ai"]
