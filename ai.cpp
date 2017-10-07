@@ -85,10 +85,10 @@ vector<vector<Tile>> AI::deserializeMap(string serializedMap) {
         for (int j = 0; j < column.size() - 1; j++)
         {
             vector<string> infos = split(column[j + 1], ",");
-            int content = atoi(infos[0].c_str());
-            int x = atoi(infos[1].c_str());
+            int y = atoi(infos[0].c_str());
+            int content = atoi(infos[1].c_str());
             int end_index = infos[2].find("}");
-            int y = atoi(infos[2].substr(0, end_index).c_str());
+            int x = atoi(infos[2].substr(0, end_index).c_str());
             Tile tile(content, x, y);
             tileTmp.push_back(tile);
         }
